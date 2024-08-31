@@ -2,14 +2,26 @@ package ua.lesson5.main;
 
 public class Cat extends Animal{
 
-    public String color;
+    public final String color;
+
+    public Cat(String color){
+        this.color = color;
+    }
 
     public void meow(){
          System.out.println(name + " doing MEOW!!!!!!");
     }
 
     @Override
-    public void eat() {
+    public final void eat() {
         System.out.println(color + " " + name + " eat");
     }
+
+    @Override
+    public void run() {
+        System.out.println("Run slowest than dog");
+    }
+
+
+
 }
