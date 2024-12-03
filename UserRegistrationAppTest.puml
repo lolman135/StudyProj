@@ -1,0 +1,63 @@
+@startuml
+class ua.lesson22.app.validator.UserValidator {
++ boolean isValid(User)
+}
+
+class ua.lesson22.app.service.RegistrationService {
+- Repository<User> userRepository
+- Validator<User> validator
++ boolean registerUser(User)
++ Optional<User> getUserById(String)
++ List<User> getAllUsers()
++ boolean updateUser(User)
++ boolean deleteUser(String)
+}
+
+
+interface ua.lesson22.app.repository.Repository {
+~ void save(T)
+~ Optional<T> findById(String)
+~ List<T> findAll()
+}
+
+enum ua.lesson22.app.model.UserRole {
++  ADMIN
++  REGULAR
+}
+
+interface ua.lesson22.app.validator.Validator {
+~ boolean isValid(T)
+}
+
+class ua.lesson22.app.repository.LocalRepository {
+- List<User> users
++ void save(User)
++ Optional<User> findById(String)
++ List<User> findAll()
++ void update(User)
++ void delete(String)
+}
+
+
+class ua.lesson22.app.Main {
++ {static} void main(String[])
+}
+
+class ua.lesson22.app.model.User {
+- String id
+- String name
+- String email
+- UserRole role
++ String getId()
++ String getName()
++ String getEmail()
++ UserRole getRole()
++ String toString()
+}
+
+
+
+
+ua.lesson22.app.validator.Validator <|.. ua.lesson22.app.validator.UserValidator
+ua.lesson22.app.repository.Repository <|.. ua.lesson22.app.repository.LocalRepository
+@enduml
